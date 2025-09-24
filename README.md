@@ -16,7 +16,7 @@ OmniQA Lab is a milti-stack quality engineering portfolio that demostrates:
  ---
 
 ## 📂 Project Structure
-
+```
 omniqa-lab/
 ├─ README.md # This file
 ├─ shared/ # shared models, data, configs usable across stacks
@@ -51,7 +51,7 @@ omniqa-lab/
 └─ .github/
 └─ workflows/
 └─ ci.yml # GitHub Actions workflow
-
+```
 
 ---
 
