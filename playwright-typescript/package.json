@@ -1,0 +1,11 @@
+{
+    "name": "playwright-typescript",
+    "version": "1.0.0",
+    "description": "Playwright with TypeScript herokuapp testing",
+    "private": true,
+    "devDependencies": { "@playwright/test": "^1.48.0", "dotenv": "^16.4.5"},
+    "scripts": {
+        "test": "playwright test --reporter=html",
+        "trace": "playwright show-trace test-results/*zip"
+    }
+}
