@@ -1,10 +1,7 @@
 name: OmniQA CI
-
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-
+  push: { branches: [ main ] }
+  pull_request: {}
 env:
   BASE_URL: https://the-internet.herokuapp.com
   API_BASE_URL: https://jsonplaceholder.typicode.com
@@ -63,40 +60,26 @@ jobs:
         with: { path: _artifacts }
       - run: |
           rm -rf site && mkdir -p site/reports
-          # copy reports if they exist
           cp -r _artifacts/pw-ts-report site/reports/playwright-typescript || true
           cp -r _artifacts/pw-ts-artifacts site/reports/playwright-typescript-artifacts || true
           cp -r _artifacts/pw-py-report site/reports/playwright-python || true
           cp -r _artifacts/pw-py-artifacts site/reports/playwright-python-artifacts || true
           cp -r _artifacts/sel-py-report site/reports/selenium-python || true
-
           cat > site/index.html <<'HTML'
           <!doctype html><html><head>
             <meta charset="utf-8" />
             <title>OmniQA Lab — Latest Reports</title>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <style>
-              body{font:16px/1.6 system-ui,Segoe UI,Roboto,Helvetica,Arial;margin:2rem;max-width:960px}
-              h1{margin:0 0 1rem}
-              .grid{display:grid;grid-template-columns:1fr;gap:.5rem}
-              @media (min-width:700px){.grid{grid-template-columns:1fr 1fr}}
-              a{display:block;padding:.6rem .8rem;border:1px solid #ddd;border-radius:10px;text-decoration:none}
-            </style>
+            <style>body{font:16px/1.6 system-ui;margin:2rem;max-width:960px}a{display:block;margin:.5rem 0}</style>
           </head><body>
             <h1>OmniQA Lab — Latest CI Reports</h1>
-            <p>This site updates automatically on every push to <code>main</code>. Playwright captures videos, screenshots, and traces on first run.</p>
-
+            <p>Updates on every push to <code>main</code>. Playwright captures videos/screenshots/traces.</p>
             <h2>UI & API</h2>
-            <div class="grid">
-              <a href="reports/playwright-typescript/index.html">Playwright (TypeScript) — HTML report</a>
-              <a href="reports/playwright-typescript-artifacts/">Playwright (TypeScript) — videos/screenshots/traces</a>
-
-              <a href="reports/playwright-python/index.html">Playwright (Python) — HTML report</a>
-              <a href="reports/playwright-python-artifacts/">Playwright (Python) — videos/screenshots/traces</a>
-
-              <a href="reports/selenium-python/index.html">Selenium (Python) — HTML report</a>
-            </div>
-
+            <a href="reports/playwright-typescript/index.html">Playwright (TypeScript) — HTML report</a>
+            <a href="reports/playwright-typescript-artifacts/">Playwright (TypeScript) — videos/screenshots/traces</a>
+            <a href="reports/playwright-python/index.html">Playwright (Python) — HTML report</a>
+            <a href="reports/playwright-python-artifacts/">Playwright (Python) — videos/screenshots/traces</a>
+            <a href="reports/selenium-python/index.html">Selenium (Python) — HTML report</a>
             <h2>Manual Tests</h2>
             <a href="../manual-tests/test-cases.md">Manual test cases (Markdown)</a>
           </body></html>
