@@ -20,6 +20,7 @@ def test_login_and_out_success(driver, base_url):
     WebDriverWait(driver, 10).until(
         lambda d: d.find_element(By.ID, "flash"))
     assert "You logged into a secure area!" in driver.page_source
+    WebDriverWait(driver, 10).until(EC.url_to_be(base_url + "/secure"))
     assert driver.current_url == base_url + "/secure"
     driver.find_element(By.CSS_SELECTOR, "a[href='/logout']").click()
     WebDriverWait(driver, 10).until(
